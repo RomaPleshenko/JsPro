@@ -1,9 +1,6 @@
-function removeElemet (array,item) {
-    let indX = array.indexOf(item);
-    if (indX !== -1){
-        array.splice(indX, 1);
-    }
+function removeElement (array, item ) {
+    let newArr = array.filter(remEl=> remEl!==item);
+    return newArr;
 }
-const array = [1,5,4,47,99,100,4,7];
-removeElemet(array,4);
-console.log(array);
+const array = [1,2,4,4,3,5,7,88,4]
+console.log(removeElement(array,4));

@@ -5,9 +5,13 @@ function sumFunction() {
         return sum;
     }
 }
-const summ = sumFunction();
-console.log(summ(4));
-console.log(summ(6));
-console.log(summ(6));
+const summary = sumFunction();
+console.log(summary(4)); 
+
+console.log(summary(6)); 
+
+console.log(summary(10)); 
+
+console.log(summary(7)); 
 
 
