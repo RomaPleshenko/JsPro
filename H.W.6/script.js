@@ -16,7 +16,5 @@ let ladder = {
       return this; 
     }
   };
-  
-  // Приклад використання
-  ladder.up().up().up().down().showStep(); // 1
+  ladder.up().up().up().down().showStep();
   
