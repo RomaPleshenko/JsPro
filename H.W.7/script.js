@@ -6,7 +6,11 @@ let company = {
         internals: [{name: 'Jack', salary: 1300}]
     }
 };
-function salary (department) {
-    return Object.values(department).reduce((total, subDep) => total + (subDep.salary || salary(subDep)), 0);
+function salary (data) {
+    if (Array.isArray(data)) {
+        return data.reduce((sum, employee) => sum + employee.salary, 0);
+    } else {
+        return Object.values(data).reduce((sum, subDept) => sum + salary(subDept), 0);
+    }
 }
 console.log(salary(company));
