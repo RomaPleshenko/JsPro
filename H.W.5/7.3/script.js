@@ -1,16 +1,21 @@
 function hundred () {
     let input;
     for (let i=0; i<10; i++){
-        input = +prompt('введите число больще 100');
+        input = prompt('введите число больще 100');
         if (input === null) {
             console.log('отменили ввод');
-            return;
-        }
-        if (input>100) {
+           return;
+        } 
+         if (isNaN(input)) {
+            console.log(`вы ввели строку ${input}`)
+            break;
+        } 
+        if (input>100){
             console.log(`число больше ста : ${input}`)
-            return;
+            break;
         }
+        
     }
-    console.log(`последние число  ${input}`)
+    console.log("Последнее введённое значение:", input)
 }
 hundred();
