@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #text {
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <input id="button" type="button" value="Поменять цвет текста">
+    <p id="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates dolorum aperiam asperiores tenetur ipsam animi praesentium itaque sunt nisi hic omnis quo culpa aliquam odio, temporibus sequi accusamus nihil iste.</p>
+    <script>
+        const colorText = document.getElementById("text");
+        const colorButton = document.getElementById("button");
+        let color = false;
+        colorButton.addEventListener("click", function(){
+            if (color) {
+               colorText.style.color = "black"
+            } else {
+                colorText.style.color = "yellow"
+            }
+            color=!color;
+        })
+    </script>
+</body>
+</html>
