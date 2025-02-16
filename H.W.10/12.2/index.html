@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        button{
+                display: block;
+                margin: 10px auto;
+                padding: 5px 5px;
+                font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div id="setOfButtons">
+        <button id="1">Кнопка №1</button>
+        <button id="2">Кнопка №2</button>
+        <button id="3">Кнопка №3</button>
+    </div>
+    <script>
+        document.getElementById("setOfButtons").addEventListener("click", function(event) {
+            if (event.target.tagName === "BUTTON") {
+                console.log("Кликнули на кнопку:" + event.target.textContent);
+            }
+        });
+    </script>
+</body>
+</html>
