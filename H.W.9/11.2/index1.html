@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        .text {
+            color: black;
+        }
+        .text.yellow {
+            color: yellow;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <p id="text" class="text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo aperiam dolor quas explicabo. Beatae optio culpa nobis suscipit deserunt cumque nemo necessitatibus quaerat ut quasi reprehenderit voluptas quam, quas tempore.</p>
+    <button id="toggleButton">Поменяй цвет текста!</button>
+    <script>
+        const textElement = document.getElementById("text");
+        const button = document.getElementById("toggleButton");
+        button.addEventListener("click", function() {
+            textElement.classList.toggle("yellow");
+        });
+    </script>
+
+</body>
+</html>

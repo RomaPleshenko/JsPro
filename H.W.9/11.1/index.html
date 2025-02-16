@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        td, th {
+            border: 1px solid black;
+        }
+        th {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="table"></div>
+
+    <script>
+        function createTable(size) {
+            const table = document.createElement("table");
+
+            for (let row = 0; row <= size; row++) {
+                const tr = document.createElement("tr");
+
+                for (let col = 0; col <= size; col++) {
+                    const cell = row === 0 || col === 0 ? document.createElement("th") : document.createElement("td");
+
+                    if (row === 0 && col === 0) {
+                        cell.textContent = "×";
+                    } else if (row === 0) {
+                        cell.textContent = col; 
+                    } else if (col === 0) {
+                        cell.textContent = row; 
+                    } else {
+                        cell.textContent = row * col; 
+                    }
+
+                    tr.appendChild(cell);
+                }
+
+                table.appendChild(tr);
+            }
+
+            document.getElementById("table").appendChild(table);
+        }
+
+        createTable(10);
+    </script>
+
+</body>
+</html>
