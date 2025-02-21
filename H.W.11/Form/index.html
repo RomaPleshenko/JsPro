@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="eu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans+Narrow:wght@700&display=swap" rel="stylesheet">
+    <link href="normalize.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    <script></script>
+    <title>Document</title>
+</head>
+<body>
+    <section class="form" >  
+        <div сlass="wrapper">
+            <h1 class="title">We would like to help you!</h1>
+            <form name="form" id="regForm" class="input-form">
+                <label class="login logo">
+                    <input id="userName" type="text" name="text" class="text data-input user-logo" placeholder="Name" >  
+                    <div id="errorName" class="error"></div>
+                </label>
+                <label class="password logo">
+                    <textarea id="userMassage" class=""></textarea>
+                    <div id="errorMassage" class="error"></div>
+                </label>
+                <p class="how">How to answer you?</p>
+                
+                <label class="password logo">
+                    <input id="userPhone" type="text" name="number"class="text data-input" placeholder="Phone number" maxlength="13">
+                    <div id="errorPhone" class="error"></div>
+                </label>
+                <label class="password logo">
+                    <input id="userEmail" type="text" name="text" id="PhoneNumber" class="text data-input" placeholder="Email" >
+                    <div id="errorEmail" class="error"></div>
+                </label>
+                <button type="submit" class="input-buttom">Send Message</button>
+            </form>
+        </div>
+    </section>
+    <script>
+        const form = document.getElementById("regForm")
+                form.addEventListener("submit",(event)=> {
+                    event.preventDefault();
+                    let isValid = true;
+                    const userName = document.getElementById("userName").value.trim();
+                    const userMassage = document.getElementById("userMassage").value.trim();
+                    const userPhone = document.getElementById("userPhone").value.trim();
+                    const userEmail = document.getElementById("userEmail").value.trim();
+        
+                    const errorName = document.getElementById("errorName");
+                    const errorMassage = document.getElementById("errorMassage");
+                    const errorPhone = document.getElementById("errorPhone");
+                    const errorEmail = document.getElementById("errorEmail")
+                    if (userName==="") {
+                        errorName.textContent = "Имя обязательно";  
+                        isValid = false;
+                    }
+                    if (userMassage.length < 5) {
+                        errorMassage.textContent = "Текст должен быть больше 5 символов"; 
+                        isValid = false;
+                    }
+                    const phonePattern = /^\+380\d{9}$/;
+                    if (isNaN(userPhone) || !phonePattern.test(userPhone)) {
+                        errorPhone.textContent = "номер должен начинаться с  +380 и содержать  9 цифр после";
+                        isValid = false;
+                    }
+                    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailPattern.test(userEmail)) {
+                        errorEmail.textContent = "Введите коректную почту";
+                        isValid = false;
+                    }
+                    if (isValid) {
+                        console.log({ userName, userMassage, userPhone, userEmail });
+                        alert("Форма успішно відправлена!");
+                    }
+                })
+    </script>
+</body>
+</html>       

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+</head>
+<body>
+    <input type="text" id="taskInput" placeholder="новое задание">
+    <button onclick="addTask()">Добавить</button>
+    <ul id="taskList"></ul>
+    <script>
+        function addTask() {
+            const taskInput = document.getElementById("taskInput");
+            const taskText = taskInput.value.trim();
+           
+
+            const li = document.createElement("li");
+            li.innerHTML = `${taskText} <button class="delete">Видалити</button>`;
+            document.getElementById("taskList").appendChild(li);
+            taskInput.value = "";
+        }
+
+        document.getElementById("taskList").addEventListener("click", function(event) {
+            if (event.target.classList.contains("delete")) {
+                event.target.parentElement.remove();
+            }
+        });
+    </script>
+</body>
+</html>
