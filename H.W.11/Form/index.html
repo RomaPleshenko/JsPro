@@ -29,7 +29,7 @@
                     <div id="errorPhone" class="error"></div>
                 </label>
                 <label class="password logo">
-                    <input id="userEmail" type="text" name="text" id="PhoneNumber" class="text data-input" placeholder="Email" >
+                    <input id="userEmail" type="text" name="text"  class="text data-input" placeholder="Email" >
                     <div id="errorEmail" class="error"></div>
                 </label>
                 <button type="submit" class="input-buttom">Send Message</button>
@@ -41,15 +41,15 @@
                 form.addEventListener("submit",(event)=> {
                     event.preventDefault();
                     let isValid = true;
-                    const userName = document.getElementById("userName").value.trim();
-                    const userMassage = document.getElementById("userMassage").value.trim();
-                    const userPhone = document.getElementById("userPhone").value.trim();
-                    const userEmail = document.getElementById("userEmail").value.trim();
+                    let userName = document.getElementById("userName").value.trim();
+                    let userMassage = document.getElementById("userMassage").value.trim();
+                    let userPhone = document.getElementById("userPhone").value.trim();
+                    let userEmail = document.getElementById("userEmail").value.trim();
         
-                    const errorName = document.getElementById("errorName");
-                    const errorMassage = document.getElementById("errorMassage");
-                    const errorPhone = document.getElementById("errorPhone");
-                    const errorEmail = document.getElementById("errorEmail")
+                    let errorName = document.getElementById("errorName");
+                    let errorMassage = document.getElementById("errorMassage");
+                    let errorPhone = document.getElementById("errorPhone");
+                    let errorEmail = document.getElementById("errorEmail")
                     if (userName==="") {
                         errorName.textContent = "Имя обязательно";  
                         isValid = false;
@@ -59,7 +59,7 @@
                         isValid = false;
                     }
                     const phonePattern = /^\+380\d{9}$/;
-                    if (isNaN(userPhone) || !phonePattern.test(userPhone)) {
+                    if (!phonePattern.test(userPhone)) {
                         errorPhone.textContent = "номер должен начинаться с  +380 и содержать  9 цифр после";
                         isValid = false;
                     }
@@ -69,10 +69,18 @@
                         isValid = false;
                     }
                     if (isValid) {
+                        errorName.textContent = "";
+                        errorMassage.textContent = "";
+                        errorPhone.textContent = "";
+                        errorEmail.textContent = "";
                         console.log({ userName, userMassage, userPhone, userEmail });
-                        alert("Форма успішно відправлена!");
+                        form.reset();
                     }
+                    //+380964997332
+                    //romaple@gmail.com
+                    
                 })
     </script>
 </body>
-</html>       
+</html>      
+ 
