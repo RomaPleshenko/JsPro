@@ -1,38 +1,45 @@
 class Student {
-    constructor (name, lastName, birthYear,grades=[]) {
+    constructor(name, lastName, birthYear, grades = []) {
         this.name = name;
         this.lastName = lastName;
         this.birthYear = birthYear;
         this.grades = grades;
         this.attendance = new Array(25).fill(null);
-        this.attendanceCount = 0;
     }
+
     getAge() {
-        return new Date().getFullYear()-this.birthYear;
+        return new Date().getFullYear() - this.birthYear;
     }
+
     getAverageGrade() {
-        if (this.grades.lenght === 0) return 0;
-        return this.grades.reduce((sum,grade)=>sum+grade,0)/this.grades.length;
+        if (this.grades.length === 0) return 0;
+        const validGrades = this.grades.filter(grade => typeof grade === "number");
+        return validGrades.reduce((sum, grade) => sum + grade, 0) / validGrades.length;
     }
+
     present() {
         this.markAttendance(true);
     }
+
     absent() {
         this.markAttendance(false);
     }
+
     markAttendance(value) {
-        if (this.attendanceCount<25) {
-            this.attendance[this.attendanceCount] = value;
-            this.attendanceCount++;       
+        const firstNullIndex = this.attendance.indexOf(null);
+        if (firstNullIndex !== -1) {
+            this.attendance[firstNullIndex] = value;
         } else {
-            console.log("Максимальное значение достигнуто")
+            console.log("Максимальное количество занятий достигнуто");
         }
     }
+
     getAttendanceRate() {
-        const valid = this.attendance.filter(el => el!= null);
-        if (valid.length===0) return 0;
+        const valid = this.attendance.filter(el => el !== null);
+        if (valid.length === 0) return 0;
         return valid.filter(el => el === true).length / valid.length;
     }
+
     summary() {
         const avgGrade = this.getAverageGrade();
         const avgAttendance = this.getAttendanceRate();
@@ -40,12 +47,13 @@ class Student {
         if (avgGrade > 90 && avgAttendance > 0.9) {
             return "Молодець!";
         } else if (avgGrade > 90 || avgAttendance > 0.9) {
-            return "Добре, але можна краще";
+            return "Хорошо но можно лучше ";
         } else {
             return "Редиска!";
         }
     }
 }
+
 const student1 = new Student("Роман", "Плещенко", 2000, [75, 91, 60, 100,85]);
 const student2 = new Student("Александра", "Палыга", 2001, [36, 77, 46, 33, 50]);
 const student3 = new Student("John", "Bonham", 1969, [19, 68, 19, 80, 72]);
