@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="src/index.js"></script>
+    <link rel="stylesheet" href="styles/main.css">
+    <title>Лендинг</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#home">Главная</a></li>
+                <li><a href="#about">О нас</a></li>
+                <li><a href="#services">Услуги</a></li>
+                <li><a href="#contact">Контакты</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section id="home" class="hero">
+        <h1>Добро пожаловать на наш сайт!</h1>
+        <p>Мы предлагаем лучшие решения для вашего бизнеса.</p>
+    </section>
+    
+    <section class="slider">
+        <div class="slides">
+            <div class="slide"><img src="images/john.png" alt="Слайд 1"></div>
+            <div class="slide"><img src="images/rubel.png" alt="Слайд 2"></div>
+            <div class="slide"><img src="images/shamim.png" alt="Слайд 3"></div>
+            <div class="slide"><img src="images/uddin.png" alt="Слайд 4"></div>
+        </div>
+        <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+        <button class="next" onclick="moveSlide(1)">&#10095;</button>
+    </section>
+    
+    <section id="about">
+        <h2>О нас</h2>
+        <p>Мы - команда профессионалов, готовых помочь вам в достижении ваших целей.</p>
+    </section>
+    
+    <section id="services">
+        <h2>Наши услуги</h2>
+        <p>Предоставляем широкий спектр услуг для вашего успеха.</p>
+    </section>
+    
+    <section id="contact">
+        <h2>Контакты</h2>
+        <p>Свяжитесь с нами: example@mail.com</p>
+    </section>
+    
+    <footer>
+        <p>&copy; 2025 Все права защищены.</p>
+    </footer>
+    
+</body>
+</html>
