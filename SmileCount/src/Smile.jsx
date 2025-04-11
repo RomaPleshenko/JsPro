@@ -34,14 +34,14 @@ const Smile = () => {
   };
 
   return (
-    <div className="text-center font-sans p-6 bg-white rounded-xl shadow-xl">
+    <div className="text-center font-sans p-6 bg-emerald-400 rounded-xl shadow-2xl">
       <h1 className="text-[40px] font-bold mb-6">Проголосуйте за смайлик</h1>
       <div className="flex flex-wrap justify-center gap-4 mb-6">
         {emojiList.map((emoji) => (
           <button
             key={emoji}
             onClick={() => handleVote(emoji)}
-            className="text-[35px] bg-gray-100 px-4 py-2 rounded hover:bg-green-300 transition"
+            className="text-[35px] bg-gray-100 px-4 py-2 rounded hover:bg-emerald-600 transition"
           >
             {emoji} ({votes[emoji] || 0})
           </button>
@@ -50,13 +50,13 @@ const Smile = () => {
       <div className="flex flex-wrap justify-center gap-4">
         <button
           onClick={showWinner}
-          className="bg-yellow-500 text-white px-4 py-2 rounded"
+          className=" w-50 bg-red-600 text-white px-4 py-2 rounded"
         >
           Победитель
         </button>
         <button
           onClick={clearVotes}
-          className="bg-orange-500 text-white px-4 py-2 rounded"
+          className=" w-50 bg-red-700 text-white px-4 py-2 rounded"
         >
           Очистить результат
         </button>
