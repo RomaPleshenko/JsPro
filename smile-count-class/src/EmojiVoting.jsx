@@ -1,6 +1,6 @@
 import React from "react";
 
-const EMOJIS = ["😀", "😂", "😍", "😢", "😢"];
+const EMOJIS = ['😀', '😂', '😍', '😎', '😢'];
 
 class EmojiVoting extends React.Component {
   constructor(props) {
