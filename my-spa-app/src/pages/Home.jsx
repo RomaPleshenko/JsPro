@@ -17,7 +17,7 @@ export default function Home() {
       <input
         value={input}
         onChange={(e) => setInput(e.target.value)}
-        placeholder="Додати нову справу"
+        placeholder="Добавить задачу"
         className="border p-1"
       />
       <button onClick={addTodo} className="ml-2 p-1 bg-blue-500 text-white">Додати</button>

@@ -7,12 +7,12 @@ import ThemeToggle from './components/ThemeToggle';
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900 text-black dark:text-white">
+    <div className="min-h-screen bg-white text-black dark:bg-gray-900 dark:text-white transition-colors">
       <header className="p-4 bg-gray-200 dark:bg-gray-800 flex justify-between">
         <nav className="space-x-4">
-          <Link to="/">Головна</Link>
+          <Link to="/">Главная</Link>
           <Link to="/contacts">Контакти</Link>
-          <Link to="/about">Про мене</Link>
+          <Link to="/about">Про нас</Link>
         </nav>
         <ThemeToggle />
       </header>
