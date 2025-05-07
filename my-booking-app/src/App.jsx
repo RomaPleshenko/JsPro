@@ -1,10 +1,7 @@
+import { router } from './router';
+import { RouterProvider } from 'react-router-dom';
+
 const App = () => {
-  return (
-    <div>
-      <h1>My Booking App</h1>
-      <p>Welcome to the booking app!</p>
-    </div>
-  );
+  return <RouterProvider router={router} />;
 };
 export default App;
-
