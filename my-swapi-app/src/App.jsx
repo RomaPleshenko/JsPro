@@ -1,36 +1,60 @@
-import React, { useEffect } from 'react';
-import { configureStore, createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { Provider, useDispatch, useSelector } from 'react-redux';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import {
+  configureStore,
+  createSlice,
+  createAsyncThunk,
+} from "@reduxjs/toolkit";
+import { Provider, useDispatch, useSelector } from "react-redux";
+import axios from "axios";
 
-
-export const fetchSwapiData = createAsyncThunk('swapi/fetch', async () => {
-  const response = await axios.get('https://swapi.py4e.com/api/people/1');
-  return response.data;
-});
-
+export const fetchSwapiData = createAsyncThunk(
+  "swapi/fetch",
+  async (id = 1, { rejectWithValue }) => {
+    try {
+      const response = await axios.get(
+        `https://swapi.py4e.com/api/people/${id}`
+      );
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.message || "Ошибка запроса");
+    }
+  }
+);
 
 const todoSlice = createSlice({
-  name: 'todos',
+  name: "todos",
   initialState: [],
   reducers: {
     addTodo: (state, action) => {
       state.push({ id: Date.now(), text: action.payload });
     },
-    clearTodos: () => []
+    clearTodos: () => [],
   },
 });
 
-
 const swapiSlice = createSlice({
-  name: 'swapi',
-  initialState: null,
+  name: "swapi",
+  initialState: {
+    data: null,
+    loading: false,
+    error: null,
+  },
   reducers: {},
-  extraReducers: builder => {
-    builder.addCase(fetchSwapiData.fulfilled, (state, action) => {
-      return action.payload;
-    });
-  }
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchSwapiData.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchSwapiData.fulfilled, (state, action) => {
+        state.loading = false;
+        state.data = action.payload;
+      })
+      .addCase(fetchSwapiData.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      });
+  },
 });
 
 const { addTodo, clearTodos } = todoSlice.actions;
@@ -43,20 +67,21 @@ const store = configureStore({
 });
 
 function TodoApp() {
-  const [text, setText] = React.useState('');
+  const [text, setText] = useState("");
+  const [characterId, setCharacterId] = useState(1);
   const dispatch = useDispatch();
-  const todos = useSelector(state => state.todos);
-  const swapi = useSelector(state => state.swapi);
+  const todos = useSelector((state) => state.todos);
+  const { data: swapi, loading, error } = useSelector((state) => state.swapi);
 
   useEffect(() => {
-    dispatch(fetchSwapiData());
-  }, [dispatch]);
+    dispatch(fetchSwapiData(characterId));
+  }, [dispatch, characterId]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (text.trim()) {
       dispatch(addTodo(text));
-      setText('');
+      setText("");
     }
   };
 
@@ -83,11 +108,16 @@ function TodoApp() {
           </button>
         </form>
         <ul className="space-y-2 mb-4">
-          {todos.map(todo => (
-            <li key={todo.id} className="p-2 bg-gray-50 rounded border shadow-sm">{todo.text}</li>
+          {todos.map((todo) => (
+            <li
+              key={todo.id}
+              className="p-2 bg-gray-50 rounded border shadow-sm"
+            >
+              {todo.text}
+            </li>
           ))}
         </ul>
-        <footer className="text-sm text-gray-600 flex justify-between items-center">
+        <footer className="text-sm text-gray-600 flex justify-between items-center mb-4">
           <span>Всего задач: {todos.length}</span>
           <button
             onClick={handleClear}
@@ -96,8 +126,29 @@ function TodoApp() {
             Очистить
           </button>
         </footer>
-        {swapi && (
-          <div className="mt-4 text-sm text-gray-800">
+
+        {/* Поле выбора ID персонажа */}
+        <div className="mb-4">
+          <label className="text-sm font-medium text-gray-700 mb-1 block">
+            ID персонажа из SWAPI:
+          </label>
+          <input
+            type="number"
+            min="1"
+            value={characterId}
+            onChange={(e) => setCharacterId(e.target.value)}
+            className="w-full border border-gray-300 rounded-lg p-2"
+          />
+        </div>
+
+        {/* Отображение состояния загрузки и ошибки */}
+        {loading && (
+          <p className="mt-2 text-blue-600">Загрузка данных SWAPI...</p>
+        )}
+        {error && <p className="mt-2 text-red-600">Ошибка: {error}</p>}
+
+        {swapi && !loading && !error && (
+          <div className="mt-2 text-sm text-gray-800">
             <strong>Имя из SWAPI:</strong> {swapi.name}
           </div>
         )}
